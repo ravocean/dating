@@ -39,23 +39,30 @@
 
 <div class="container mt-4">
     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-            <h3 class="mb-4 text-center">Dating Starts Here</h3>
-
-            <p class="card-text mb-2 text-muted">You don’t have to be the smartest person in the world to know what love is</p>
-
-            <hr class="style13">
-            <p><em>"I’m not a smart man… but I know what love is.” <br> — Forrest Gump, Forrest Gump</em></p>
+        <div class="m-3">
+            <h3>Profile</h3>
             <hr class="style13">
 
-            <a href="information">
-                <button type="button" class="btn btn-primary col-4 mx-auto" onclick="information">Create a Profile</button>
-            </a>
-        </div>
+            <form class="row g-3" action="interests" method="GET" id="interests">
 
-        <div class="col-auto d-none d-lg-block">
-            <img class="bd-placeholder-img" src="../dating/images/main.jpg" alt="Dating App">
+                <h2>Summary</h2>
 
+                <p>Name: {{ @SESSION.fName}} {{ @SESSION.lName}}</p>
+                <p>Gender: {{ @SESSION.gender}}</p>
+                <p>Age: {{ @SESSION.age}}</p>
+                <p>Phone: {{ @SESSION.phone}}</p>
+                <p>Email: {{ @SESSION.email}}</p>
+                <p>State: {{ @SESSION.state}}</p>
+                <p>Seeking: {{ @SESSION.seeking}}</p>
+                <p>Interests: {{ @SESSION.interests}}</p>
+
+                <p>Bio: {{ @SESSION.bio}}</p>
+
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Contact Me</button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
