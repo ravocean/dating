@@ -4,13 +4,12 @@
     {
       "name": "Husrav Khomidov",
       "email": "kkhomidov2@mail.greenriver.edu"
-    },
-    {
-      "name": "Joe Shmo",
-      "email": "jshmo@greenriver.edu"
     }
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["model/", "controllers/"]
   }
 }

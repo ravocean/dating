@@ -22,7 +22,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a href="#" class="navbar-brand">Dating Website</a>
+        <a href="{{ @BASE }}" class="navbar-brand">Dating Website</a>
         <div class="collapse navbar-collapse" id="myTogglerNav">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{{ @BASE }}">Home</a>
@@ -45,7 +45,7 @@
 
             <form class="row g-3" action="interests" method="GET" id="interests">
 
-                <h2>Summary</h2>
+                <!--<h2>Summary</h2>
 
                 <p>Name: {{ @SESSION.fName}} {{ @SESSION.lName}}</p>
                 <p>Gender: {{ @SESSION.gender}}</p>
@@ -57,6 +57,64 @@
                 <p>Interests: {{ @SESSION.interests}}</p>
 
                 <p>Bio: {{ @SESSION.bio}}</p>
+-->
+
+                <!--Submission Summary-->
+                <div id="summary" class=" p-3 mb-5 bg-white band">
+                    <header>
+                        <h1>Summary</h1>
+                    </header>
+                    <div class="row">
+                        <!--Left Column-->
+                        <div class="col col-6">
+                            <div class="ml-2">
+                                <table class="table">
+                                    <tr>
+                                        <th>Name:</th>
+                                        <td>{{ @SESSION.fName}} {{ @SESSION.lName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Gender:</th>
+                                        <td>{{ @SESSION.gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Age:</th>
+                                        <td>{{ @SESSION.age}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone:</th>
+                                        <td>{{ @SESSION.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email:</th>
+                                        <td>{{ @SESSION.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>State:</th>
+                                        <td>{{ @SESSION.state}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Seeking:</th>
+                                        <td>{{ @SESSION.seeking}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Interests:</th>
+                                        <td>{{ @SESSION.interests}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div> <!--Left Column-->
+
+                        <!--Right Column-->
+                        <div class="col col-6">
+                            <img class="img-fluid img-thumbnail rounded" src="../dating/images/elon.png" alt="ELon Musk">
+
+                            <p class="m-4 text-center">Biography: {{ @SESSION.bio}}</p>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="col-12">
                     <button class="btn btn-primary" type="submit">Contact Me</button>

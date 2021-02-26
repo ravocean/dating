@@ -22,7 +22,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a href="#" class="navbar-brand">Dating Website</a>
+        <a href="{{ @BASE }}" class="navbar-brand">Dating Website</a>
         <div class="collapse navbar-collapse" id="myTogglerNav">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{{ @BASE }}">Home</a>
@@ -43,7 +43,7 @@
             <h3>Interests</h3>
             <hr class="style13">
 
-            <form class="" action="summary" method="POST" id="summary">
+            <form class="row g-3" action="#" method="POST">
 
                 <div class="container mb-2">
                     <div class="row">
@@ -51,82 +51,29 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label class="col-md-2 checkbox-inline" for="tv">
-                                <input type="checkbox" name="interests" id="tv" value="TV">
-                                TV
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="movies">
-                                <input type="checkbox" name="interests" id="movies" value="Movies">
-                                Movies
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="cooking">
-                                <input type="checkbox" name="interests" id="cooking" value="Cooking">
-                                Cooking
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="boardgames">
-                                <input type="checkbox" name="interests" id="boardgames" value="Board Games">
-                                Board Games
-                            </label>
-                        </div>
-                    </div>
+                            <repeat group="{{@indoorsList}}" value="{{@interest}}">
+                                <div class="form-group col-3">
+                                    <input type="checkbox" name="indoors[]" value="{{@interest}}">
+                                    <label>{{@interest}}</label>
+                                </div>
+                            </repeat>
 
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="col-md-2 checkbox-inline" for="checkbo123xes-0">
-                                <input type="checkbox" name="checkboxes" id="checkbo123xes-0" value="1">
-                                Puzzles
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="asdasd3">
-                                <input type="checkbox" name="checkboxes" id="asdasd3" value="2">
-                                Reading
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="chsadas">
-                                <input type="checkbox" name="checkboxes" id="chsadas" value="3">
-                                Playing Cards
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="234asd">
-                                <input type="checkbox" name="checkboxes" id="234asd" value="4">
-                                Video Games
-                            </label>
                         </div>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="row">
-                        <label class="col-md-12 control-label" for="outdoor">Out-door Interests</label>
+                        <label class="col-md-12 control-label">Out-door Interests</label>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label class="col-md-2 checkbox-inline" for="checkboxes-0">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
-                                Hiking
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="checkboxes-1">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
-                                Biking
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="checkboxes-2">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3">
-                                Swimming
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="checkboxes-3">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4">
-                                Collecting
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="col-md-2 checkbox-inline" for="checkboxes-0">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
-                                Walking
-                            </label>
-                            <label class="col-md-2 checkbox-inline" for="checkboxes-1">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
-                                Climbing
-                            </label>
+                            <repeat group="{{@outdoorsList}}" value="{{@interest}}">
+                                <div class="form-group col-3">
+                                    <input type="checkbox" name="outdoors[]" value="{{@interest}}">
+                                    <label>{{@interest}}</label>
+                                </div>
+                            </repeat>
                         </div>
                     </div>
                 </div>
