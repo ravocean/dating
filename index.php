@@ -8,107 +8,54 @@ error_reporting(E_ALL);
 //Start a session
 session_start();
 
+
 //Require autoload file
 require_once('vendor/autoload.php');
+/*require('model/validate.php');
+require('model/data-layer.php');*/
 
-//Instantiate Fat-Free
+
+//Create an instance of the Base Class
 $f3 = Base::instance();
+
+
+$dataLayer = new DataLayer();
+$validator = new Validate($dataLayer);
+$controller = new Controller($f3);
 
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-//Define a default route
-$f3->route('GET /', function() {
+//Define a default root
+$f3->route('GET /', function ($f3) {
 
-    //Display a view
-    $view = new Template();
-    echo $view->render('views/home.html');
+    global $controller;
+    $controller->home();
 });
 
 //Define a personal info route
-$f3->route('GET /information', function() {
-
-    //var_dump($_SESSION);
-
-
-    $view = new Template();
-    echo $view->render('views/info.html');
+$f3->route('GET|POST /information', function ($f3) {
+    global $controller;
+    $controller->information();
 });
 
 //Define the profile page route
-$f3->route('POST /profile', function() {
-
-    //var_dump($_SESSION);
-   // var_dump($_POST);
-
-    if(isset($_POST['fName'])){
-        $_SESSION['fName'] = $_POST['fName'];
-    }
-
-    if(isset($_POST['lName'])){
-        $_SESSION['lName'] = $_POST['lName'];
-    }
-
-    if(isset($_POST['age'])){
-        $_SESSION['age'] = $_POST['age'];
-    }
-
-    if(isset($_POST['gender'])){
-        $_SESSION['gender'] = $_POST['gender'];
-    }
-
-    if(isset($_POST['phone'])){
-        $_SESSION['phone'] = $_POST['phone'];
-    }
-
-    $view = new Template();
-    echo $view->render('views/profile.html');
+$f3->route('GET|POST /profile', function ($f3) {
+    global $controller;
+    $controller->profile();
 });
 
 //Define the interests page route
-$f3->route('POST /interests', function() {
 
-    //var_dump($_SESSION);
-
-    if(isset($_POST['email'])){
-        $_SESSION['email'] = $_POST['email'];
-    }
-
-    if(isset($_POST['state'])){
-        $_SESSION['state'] = $_POST['state'];
-    }
-
-    if(isset($_POST['seeking'])){
-        $_SESSION['seeking'] = $_POST['seeking'];
-    }
-
-    if(isset($_POST['bio'])){
-        $_SESSION['bio'] = $_POST['bio'];
-    }
-
-
-    $view = new Template();
-    echo $view->render('views/interests.html');
+$f3->route('GET|POST /interests', function ($f3) {
+    global $controller;
+    $controller->interests();
 });
 
 //Define the summary page route
-$f3->route('POST /summary', function() {
-
-    //var_dump($_SESSION);
-
-
-    if (isset($_POST['interests'])) {
-        $interest = $_POST['interests'];
-        $_SESSION['interests'] = implode(", ", $interest);
-
-    }
-
-
-    $view = new Template();
-    echo $view->render('views/summary.html');
-
-    //Clear the SESSION array
-    session_destroy();
+$f3->route('GET|POST /summary', function ($f3) {
+    global $controller;
+    $controller->summary();
 });
 
 //Run Fat-Free
