@@ -1,6 +1,6 @@
 <?php
 /** Create a food order form */
-
+//test
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -96,9 +96,13 @@ $f3->route('POST /summary', function() {
 
     //var_dump($_SESSION);
 
-    if(isset($_POST['interests'])){
-        $_SESSION['interests'] = $_POST['interests'];
+
+    if (isset($_POST['interests'])) {
+        $interest = $_POST['interests'];
+        $_SESSION['interests'] = implode(", ", $interest);
+
     }
+
 
     $view = new Template();
     echo $view->render('views/summary.html');
