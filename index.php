@@ -5,14 +5,13 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//Start a session
-session_start();
-
-
 //Require autoload file
 require_once('vendor/autoload.php');
 /*require('model/validate.php');
 require('model/data-layer.php');*/
+
+//Start a session
+session_start();
 
 
 //Create an instance of the Base Class
@@ -53,7 +52,7 @@ $f3->route('GET|POST /interests', function ($f3) {
 });
 
 //Define the summary page route
-$f3->route('GET|POST /summary', function ($f3) {
+$f3->route('GET /summary', function ($f3) {
     global $controller;
     $controller->summary();
 });
