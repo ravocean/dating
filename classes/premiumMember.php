@@ -1,4 +1,10 @@
 <?php
+/**
+ * Husrav Homidov
+ * 2/24/2021
+ * validate.php
+ * This file contains PremiumMember class for Dating app
+ */
 
 class PremiumMember extends Member {
 

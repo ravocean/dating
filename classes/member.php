@@ -1,4 +1,11 @@
 <?php
+/**
+ * Husrav Homidov
+ * 2/24/2021
+ * validate.php
+ * This file contains Member class for Dating app
+ */
+
 class Member {
 
     private $_fname;
