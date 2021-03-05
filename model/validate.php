@@ -59,9 +59,8 @@ class Validate
             if (!in_array($interest, $this->_dataLayer->getOutdoor())) {
                 return false;
             }
-
         }
-        return false;
+        return true;
     }
 
     function validIndoor($indoor)
@@ -70,8 +69,7 @@ class Validate
             if (!in_array($interest, $this->_dataLayer->getIndoor())) {
                 return false;
             }
-
         }
-        return false;
+        return true;
     }
 } // end of Validate class
