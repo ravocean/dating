@@ -17,14 +17,12 @@ class Controller
 
     function home()
     {
-
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
     function information()
     {
-
         global $validator;
 
         //Save POST content to $f3 for sticky forms
@@ -33,6 +31,7 @@ class Controller
         $this->_f3->set('age', isset($_POST['age']) ? $_POST['age'] : "");
         $this->_f3->set('gender', isset($_POST['gender']) ? $_POST['gender'] : "");
         $this->_f3->set('phone', isset($_POST['phone']) ? $_POST['phone'] : "");
+        $this->_f3->set('premium', isset($_POST['premiumAccount']) ? "checked": "");
 
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -74,8 +73,37 @@ class Controller
                 $this->_f3->set("errors['phone']", 'Number is not valid');
             }
 
+            // Save premium account checkbox to session
+            $_SESSION['premiumAccount'] = isset($_POST['premiumAccount']);
+
+
 
             if (empty($this->_f3->get('errors'))) {
+
+                // Save to new PremiumMember obj if checkbox checked
+                if($_SESSION['premiumAccount']){
+                    $member = new PremiumMember(
+                        $_SESSION['fName'],
+                        $_SESSION['lName'],
+                        $_SESSION['age'],
+                        $_SESSION['gender'],
+                        $_SESSION['phone']
+                    );
+                }
+                // If checkbox not checked, save to Member object
+                else{
+                    $member = new Member(
+                        $_SESSION['fName'],
+                        $_SESSION['lName'],
+                        $_SESSION['age'],
+                        $_SESSION['gender'],
+                        $_SESSION['phone']
+                    );
+                }
+                // Store the member object in a session
+                $_SESSION['member'] = $member;
+
+                // Move to the next page
                 $this->_f3->reroute('profile');
             }
         }
@@ -107,7 +135,6 @@ class Controller
                 $this->_f3->set("errors['email']", 'Email is not valid');
             }
 
-
             if ($validator->validState($_POST['state'])) {
                 $_SESSION['state'] = $_POST['state'];
             } else {
@@ -127,6 +154,13 @@ class Controller
             }
 
             if (empty($this->_f3->get('errors'))) {
+
+                // Store the session in the Member object
+                $_SESSION['member']->setEmail($_SESSION['email']);
+                $_SESSION['member']->setState($_SESSION['state']);
+                $_SESSION['member']->setSeeking($_SESSION['seeking']);
+                $_SESSION['member']->setBio($_SESSION['bio']);
+
                 $this->_f3->reroute('interests');
             }
         }
@@ -138,6 +172,12 @@ class Controller
 
     function interests()
     {
+
+        // Check if member is premium, if not, redirect to summary
+        if (!$_SESSION['premiumAccount']){
+            $this->_f3->reroute('summary');
+        }
+
         global $validator;
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -158,7 +198,7 @@ class Controller
                 implode(", ", array_merge($_SESSION['indoors'], $_SESSION['outdoors']));
 
             if (empty($_SESSION['allInterests'])) {
-                $_SESSION['allInterests'] = "None Specified";
+                $_SESSION['allInterests'] = "Not Specified";
             }
 
             $this->_f3->reroute('summary');
@@ -171,7 +211,7 @@ class Controller
 
     function summary()
     {
-
+        var_dump($_POST);
         $view = new Template();
         echo $view->render('views/summary.html');
     }
