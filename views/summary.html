@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../dating/styles/styles.css">
     <title>Dating</title>
@@ -71,49 +72,75 @@
                                 <table class="table">
                                     <tr>
                                         <th>Name:</th>
-                                        <td>{{ @SESSION.fName}} {{ @SESSION.lName}}</td>
+                                        <td>{{ @SESSION.member->getFname()}} {{ @SESSION.member->getLname()}}</td>
+                                        <!--<td>{{ @SESSION.fName}} {{ @SESSION.lName}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Gender:</th>
-                                        <td>{{ @SESSION.gender}}</td>
+                                        <td>{{ @SESSION.member->getGender()}}</td>
+                                        <!--<td>{{ @SESSION.gender}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Age:</th>
-                                        <td>{{ @SESSION.age}}</td>
+                                        <td>{{ @SESSION.member->getAge()}}</td>
+                                        <!--<td>{{ @SESSION.age}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Phone:</th>
-                                        <td>{{ @SESSION.phone}}</td>
+                                        <td>{{ @SESSION.member->getPhone()}}</td>
+                                        <!--<td>{{ @SESSION.phone}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Email:</th>
-                                        <td>{{ @SESSION.email}}</td>
+                                        <td>{{ @SESSION.member->getEmail()}}</td>
+                                        <!--<td>{{ @SESSION.email}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>State:</th>
-                                        <td>{{ @SESSION.state}}</td>
+                                        <td>{{ @SESSION.member->getState()}}</td>
+                                        <!--<td>{{ @SESSION.state}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Seeking:</th>
-                                        <td>{{ @SESSION.seeking}}</td>
+                                        <td>{{ @SESSION.member->getSeeking()}}</td>
+                                        <!--<td>{{ @SESSION.seeking}}</td>-->
                                     </tr>
                                     <tr>
-                                        <th>Interests:</th>
-                                        <td>{{ @SESSION.interests}}</td>
+                                        <!--<th>Interests:</th>
+                                        <td>{{ @SESSION.allInterests}}</td>-->
+
+                                        <check if="{{@SESSION.premiumAccount}}">
+                                            <check if="empty({{@SESSION.member->getInDoorInterests()}}) & empty({{@SESSION.member->getOutDoorInterests()}}) ">
+                                                <true>
+                                                    <th>Interests:</th>
+                                                    <td>Unspecified</td>
+                                                </true>
+                                                <false>
+                                                    <th>Interests:</th>
+                                                    <td>
+                                                        {{implode(", ",
+                                                        array_merge(@SESSION.member->getInDoorInterests(),
+                                                        @SESSION.member->getOutDoorInterests()))}}
+                                                    </td>
+                                                </false>
+                                            </check>
+                                        </check>
                                     </tr>
+
                                 </table>
                             </div>
                         </div> <!--Left Column-->
 
                         <!--Right Column-->
                         <div class="col col-6">
-                            <img class="img-fluid img-thumbnail rounded" src="../dating/images/elon.png" alt="ELon Musk">
+                            <img class="img-fluid img-thumbnail rounded" src="../dating/images/elon.png"
+                                 alt="ELon Musk">
 
                             <p class="m-4 text-center">Biography: {{ @SESSION.bio}}</p>
+
                         </div>
                     </div>
                 </div>
-
 
 
                 <div class="col-12">
@@ -127,7 +154,9 @@
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!--
