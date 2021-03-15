@@ -32,7 +32,7 @@
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" href="#">Login</a>
+                <a class="nav-item nav-link" href="admin">Admin</a>
             </li>
         </ul>
     </div><!-- container -->
@@ -45,20 +45,6 @@
             <hr class="style13">
 
             <form class="row g-3" action="interests" method="GET" id="interests">
-
-                <!--<h2>Summary</h2>
-
-                <p>Name: {{ @SESSION.fName}} {{ @SESSION.lName}}</p>
-                <p>Gender: {{ @SESSION.gender}}</p>
-                <p>Age: {{ @SESSION.age}}</p>
-                <p>Phone: {{ @SESSION.phone}}</p>
-                <p>Email: {{ @SESSION.email}}</p>
-                <p>State: {{ @SESSION.state}}</p>
-                <p>Seeking: {{ @SESSION.seeking}}</p>
-                <p>Interests: {{ @SESSION.interests}}</p>
-
-                <p>Bio: {{ @SESSION.bio}}</p>
--->
 
                 <!--Submission Summary-->
                 <div id="summary" class=" p-3 mb-5 bg-white band">
@@ -73,47 +59,37 @@
                                     <tr>
                                         <th>Name:</th>
                                         <td>{{ @SESSION.member->getFname()}} {{ @SESSION.member->getLname()}}</td>
-                                        <!--<td>{{ @SESSION.fName}} {{ @SESSION.lName}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Gender:</th>
                                         <td>{{ @SESSION.member->getGender()}}</td>
-                                        <!--<td>{{ @SESSION.gender}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Age:</th>
                                         <td>{{ @SESSION.member->getAge()}}</td>
-                                        <!--<td>{{ @SESSION.age}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Phone:</th>
                                         <td>{{ @SESSION.member->getPhone()}}</td>
-                                        <!--<td>{{ @SESSION.phone}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Email:</th>
                                         <td>{{ @SESSION.member->getEmail()}}</td>
-                                        <!--<td>{{ @SESSION.email}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>State:</th>
                                         <td>{{ @SESSION.member->getState()}}</td>
-                                        <!--<td>{{ @SESSION.state}}</td>-->
                                     </tr>
                                     <tr>
                                         <th>Seeking:</th>
                                         <td>{{ @SESSION.member->getSeeking()}}</td>
-                                        <!--<td>{{ @SESSION.seeking}}</td>-->
                                     </tr>
                                     <tr>
-                                        <!--<th>Interests:</th>
-                                        <td>{{ @SESSION.allInterests}}</td>-->
-
                                         <check if="{{@SESSION.premiumAccount}}">
                                             <check if="empty({{@SESSION.member->getInDoorInterests()}}) & empty({{@SESSION.member->getOutDoorInterests()}}) ">
                                                 <true>
                                                     <th>Interests:</th>
-                                                    <td>Unspecified</td>
+                                                    <td>none selected</td>
                                                 </true>
                                                 <false>
                                                     <th>Interests:</th>

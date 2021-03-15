@@ -11,9 +11,9 @@ class Validate
     private $_dataLayer;
 
     // Constructor
-    function __construct($_dataLayer)
+    function __construct()
     {
-        $this->_dataLayer = $_dataLayer;
+        $this->_dataLayer = new DataLayer();
     }
 
     function validName($name)
@@ -53,20 +53,20 @@ class Validate
         return preg_match($emailRegx, $email);
     }
 
-    function validOutdoor($outdoor)
+    function validIndoor($indoorInt)
     {
-        foreach ($outdoor as $interest) {
-            if (!in_array($interest, $this->_dataLayer->getOutdoor())) {
+        foreach ($indoorInt as $interest) {
+            if (!in_array($interest, $this->_dataLayer->getIndoor())) {
                 return false;
             }
         }
         return true;
     }
 
-    function validIndoor($indoor)
+    function validOutdoor($outdoorInt)
     {
-        foreach ($indoor as $interest) {
-            if (!in_array($interest, $this->_dataLayer->getIndoor())) {
+        foreach ($outdoorInt as $interest) {
+            if (!in_array($interest, $this->_dataLayer->getOutdoor())) {
                 return false;
             }
         }

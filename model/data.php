@@ -4,13 +4,19 @@ class Database{
 
     private $_dbh;
 
-
+    /**
+     * Database constructor.
+     * @param $dbh
+     */
     function __construct($dbh)
     {
         $this->_dbh = $dbh;
     }
 
-
+    /**
+     * This function inserts an argument Member or PremiumMember object data into the member table
+     * @param $member Object Member or PremiumMember to be inserted into database table
+     */
     function insertMember($member){
         //Build query
         $sql = "INSERT INTO member (fname, lname, age, gender, phone, email, state, seeking, bio, premium, image, interests)
@@ -46,7 +52,11 @@ class Database{
         //Process results
         $statement->execute();
     }
-    
+
+    /**
+     * This function returns all member table information.
+     * @return array of arrays containing member information
+     */
     function getMembers(){
         //Build query
         $sql = "SELECT * FROM member ORDER BY lname";

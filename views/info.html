@@ -32,7 +32,7 @@
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" href="#">Login</a>
+                <a class="nav-item nav-link" href="admin">Admin</a>
             </li>
         </ul>
     </div><!-- container -->
@@ -48,6 +48,7 @@
                 <div class="row">
                     <div class="col col-6">
 
+                        <!--First Name-->
                         <div class="row-md-2">
                             <label for="fName" class="form-label">First name</label>
                             <input type="text" class="form-control" id="fName" name="fName" placeholder="John" value="{{@fName}}">
@@ -57,6 +58,7 @@
                             </check>
                         </div>
 
+                        <!--Last Name-->
                         <div class="row-md-2">
                             <label for="lName" class="form-label">Last name</label>
                             <input type="text" class="form-control" id="lName" name="lName" placeholder="Smith" value="{{@lName}}">
@@ -66,6 +68,7 @@
                             </check>
                         </div>
 
+                        <!--Age-->
                         <div class="row-md-2">
                             <label for="age" class="form-label">Age</label>
                             <input type="text" class="form-control" id="age" name="age" value="{{@age}}">
@@ -75,6 +78,7 @@
                             </check>
                         </div>
 
+                        <!--Gender-->
                         <fieldset class="row md-2">
                             <legend class="col-form-label">Gender</legend>
                             <div class="col-sm-10">
@@ -90,15 +94,27 @@
                             </div>
                         </fieldset>
 
+                        <!--Phone Number-->
                         <div class="row-md-2">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{@phone}}">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{@phone}}"
+                            placeholder="xxx-xxx-xxxx">
 
                             <check if="{{isset(@errors['phone'])}}">
                                 <p class="alert alert-warning mt-2">{{@errors['phone']}}</p>
                             </check>
                         </div>
+
+                        <!--Premium Membership-->
+                        <div class="row-md-2">
+                            <legend class="col-form-label">Premium Membership</legend>
+                            <input class="form-check-input" type="checkbox" name="premiumAccount" {{@premium}}>
+                            Sign up for Premium Account
+                            </label>
+                        </div>
                     </div>
+
+                    <!--Policy Alert-->
                     <div class="col col-6">
                         <div class="col-md-6 mt-5 alert alert-secondary" role="alert">
                             <strong>Note:</strong> All information entered is protected by our <a href="#"
