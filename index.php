@@ -13,14 +13,15 @@ require('model/data-layer.php');*/
 //Start a session
 session_start();
 
+require('config.php');
 
 //Create an instance of the Base Class
 $f3 = Base::instance();
 
-
 $dataLayer = new DataLayer();
 $validator = new Validate($dataLayer);
 $controller = new Controller($f3);
+$database = new Database($dbh);
 
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
@@ -55,6 +56,13 @@ $f3->route('GET|POST /interests', function ($f3) {
 $f3->route('GET /summary', function ($f3) {
     global $controller;
     $controller->summary();
+});
+
+// Define the admin page route
+$f3->route('GET|POST /admin', function ($f3)
+{
+    global $controller;
+    $controller->admin();
 });
 
 //Run Fat-Free
