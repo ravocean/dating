@@ -1,4 +1,10 @@
 <?php
+/**
+ * Husrav Homidov
+ * 2/24/2021
+ * validate.php
+ * This file contains controller for Dating app
+ */
 
 class Controller
 {
@@ -182,25 +188,31 @@ class Controller
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            if (isset($_POST['indoors']) && $validator->validIndoor($_POST['indoors'])) {
+            // Validate indoor interests
+            if (isset($_POST['indoors']) ) { //&& $validator->validIndoor($_POST['indoors'])
                 $_SESSION['indoors'] = $_POST['indoors'];
             } else {
                 $_SESSION['indoors'] = array();
             }
 
-            if (isset($_POST['outdoors']) && $validator->validOutdoor($_POST['outdoors'])) {
+            // Validate outdoor interests
+            if (isset($_POST['outdoors']) ) { //&& $validator->validOutdoor($_POST['outdoors'])
                 $_SESSION['outdoors'] = $_POST['outdoors'];
             } else {
                 $_SESSION['outdoors'] = array();
             }
 
-            $_SESSION['allInterests'] =
+            $_SESSION['member']->setInDoorInterests($_SESSION['indoors']);
+            $_SESSION['member']->setOutDoorInterests($_SESSION['outdoors']);
+
+            /*$_SESSION['allInterests'] =
                 implode(", ", array_merge($_SESSION['indoors'], $_SESSION['outdoors']));
 
             if (empty($_SESSION['allInterests'])) {
                 $_SESSION['allInterests'] = "Not Specified";
-            }
+            }*/
 
+            // Route to summary page
             $this->_f3->reroute('summary');
         }
 
@@ -211,8 +223,19 @@ class Controller
 
     function summary()
     {
-        var_dump($_POST);
+        //var_dump($_POST);
         $view = new Template();
         echo $view->render('views/summary.html');
+    }
+
+    function admin(){
+        global $database;
+
+        //Retrieve member table information to display
+        $this->_f3->set('results', $database->getMembers());
+
+        //Render the page
+        $view = new Template();
+        echo $view->render('views/admin.html');
     }
 }
